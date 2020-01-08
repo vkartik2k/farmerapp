@@ -16,6 +16,29 @@ export default function ActiveOrders(props) {
           <Text style={{ fontSize: 17, fontWeight: 'bold' }}>CARROT</Text>
           <Text>200 Kg</Text>
           <Text>₹40/Kg</Text>
+          <Text style={{color: '#0A79DF'}}>Check Details</Text>
+        </View>
+      </View>
+      <View style={styles.card}>
+        <View>
+          <Image source={require('../assets/carrot_farm.jpg')} style={{ height: 80, width: 110 }} />
+        </View>
+        <View style={{ paddingHorizontal: 10 }}>
+          <Text style={{ fontSize: 17, fontWeight: 'bold' }}>CARROT</Text>
+          <Text>200 Kg</Text>
+          <Text>₹40/Kg</Text>
+          <Text style={{color: '#0A79DF'}}>Check Details</Text>
+        </View>
+      </View>
+      <View style={styles.card}>
+        <View>
+          <Image source={require('../assets/carrot_farm.jpg')} style={{ height: 80, width: 110 }} />
+        </View>
+        <View style={{ paddingHorizontal: 10 }}>
+          <Text style={{ fontSize: 17, fontWeight: 'bold' }}>CARROT</Text>
+          <Text>200 Kg</Text>
+          <Text>₹40/Kg</Text>
+          <Text style={{color: '#0A79DF'}}>Check Details</Text>
         </View>
       </View>
     </View>

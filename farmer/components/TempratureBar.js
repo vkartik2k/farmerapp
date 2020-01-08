@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
     width: width,
     backgroundColor: '#A3CB37',
     color: 'white',
-    paddingTop: 100,
-    paddingBottom: 10,
+    paddingTop: 80,
+    paddingBottom: 5,
   },
   temp: {
     flexDirection: 'row',
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   extra: {
-    paddingVertical: 10,
+    paddingVertical: 5,
     flexDirection: 'row',
     alignItems: 'baseline',
     justifyContent: 'center'
