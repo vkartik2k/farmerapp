@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableHighlight, Image, Modal, Dimensions } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
+import { StyleSheet, Text, View, TextInput, TouchableHighlight, Image, Modal, Dimensions, Button } from 'react-native';
+import { MaterialIcons, Feather } from '@expo/vector-icons';
 import * as Permissions from 'expo-permissions';
 import { Camera } from 'expo-camera';
 
@@ -29,6 +29,18 @@ export default class NewOrderModal extends React.Component {
     this.props.closeDisplay();
     return true;
   }
+
+  takePicture = () => {
+    if (this.camera) {
+      this.camera.takePictureAsync({ onPictureSaved: this.onPictureSaved });
+    }
+  };
+
+  onPictureSaved = photo => {
+    console.log(photo);
+  }
+
+
   render() {
     const { hasCameraPermission, scanned } = this.state;
 
@@ -57,13 +69,30 @@ export default class NewOrderModal extends React.Component {
             </View>
             <View style={{ height: 32, width: 32 }}></View>
           </View>
-          <Camera style={{ height: 800, width: 600 }} type={Camera.Constants.Type.back}>
+          <Camera
+            style={{ height: height - 125, width: (height - 125) * 3 / 4 }}
+            type={Camera.Constants.Type.back}
+            ref={(ref) => { this.camera = ref }}
+          >
             <View
               style={{
                 flex: 1,
                 backgroundColor: 'transparent',
-                flexDirection: 'row',
+                flexDirection: 'column-reverse',
+                alignItems: 'center',
+                padding: 20
               }}>
+              <TouchableHighlight>
+                <View style={{ backgroundColor: '#fff', borderRadius: 100, padding: 20 }}>
+                  <Feather
+                    name="camera"
+                    color="#0A79DF"
+                    size={30}
+                    onPress={this.takePicture}
+                  />
+                </View>
+
+              </TouchableHighlight>
             </View>
           </Camera>
         </View>
@@ -77,7 +106,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#99AAAB',
     alignItems: 'center',
-    paddingTop: 85
+    paddingTop: 52
   },
   headerContainer: {
     zIndex: 9,
