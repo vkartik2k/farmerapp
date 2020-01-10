@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, TouchableWithoutFeedback } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 const width = Dimensions.get('window').width;
@@ -8,16 +8,21 @@ const height = Dimensions.get('window').height;
 export default function CreateOrder(props) {
   return (
     <View>
-    <Text style={{ fontWeight: 'bold', paddingHorizontal: 10, fontSize: 14 }}>ACTIVE ORDERS</Text>
-    <View style={styles.container}>
-      <Ionicons
-        name="ios-add-circle-outline"
-        color="#0A79DF"
-        size={35}
-        onPress={() => { props.loginBtn() }}
-      />
-      <Text style={{paddingHorizontal: 15, fontSize: 18}}>Create new order</Text>
-    </View>
+      <Text style={{ fontWeight: 'bold', paddingHorizontal: 10, fontSize: 14 }}>ACTIVE ORDERS</Text>
+      <View style={styles.container}>
+        <Ionicons
+          name="ios-add-circle-outline"
+          color="#0A79DF"
+          size={35}
+          onPress={() => { props.orderBtn() }}
+        />
+        <TouchableWithoutFeedback
+          onPress={() => { props.orderBtn() }}
+        >
+          <Text style={{ paddingHorizontal: 15, fontSize: 18 }}>Create new order</Text>
+
+        </TouchableWithoutFeedback>
+      </View>
     </View>
   )
 }
