@@ -1,14 +1,31 @@
 import React from 'react'
 import { StyleSheet, Image, Text, View, Dimensions, TouchableWithoutFeedback } from 'react-native'
 
+import ChatModal from '../screens/ChatModal'
+
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 
 export default class Contact extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      chatModalDisplay: false,
+    }
+  }
+
+  _openChatModal = () => this.setState({ chatModalDisplay: true })
+
   render() {
     return (
-      <TouchableWithoutFeedback>
+      <TouchableWithoutFeedback
+        onPress = {this._openChatModal}
+      >
         <View style={styles.container}>
+          <ChatModal
+            display={this.state.chatModalDisplay}
+            closeDisplay={() => this.setState({ chatModalDisplay: false })}
+          />
           <Image style={styles.displayPicture} source={require('../assets/defaultDp.png')} />
           <View style={styles.textContainer}>
             <View style={styles.subTextContainer}>
