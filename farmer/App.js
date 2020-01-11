@@ -8,18 +8,22 @@ import ActiveOrders from './components/ActiveOrders';
 
 import NewOrderModal from './screens/NewOrderModal'
 import SignIn from './screens/SignIn'
+import DetailsModal from './screens/DetailsModal'
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       NewOrderDisplay: false,
-      signInDisplay: false
+      signInDisplay: false,
+      detailsDisplay: false,
+      productDetails: {}
     }
   }
 
   _openNewOrderModal = () => this.setState({ NewOrderDisplay: true })
   _openSignInModal = () => this.setState({ signInDisplay: true })
+  _openDetailsModal = (productDetails) => this.setState({ detailsDisplay: true, productDetails: productDetails })
 
   render() {
     return (
@@ -35,13 +39,22 @@ export default class App extends React.Component {
           display={this.state.signInDisplay}
           closeDisplay={() => this.setState({ signInDisplay: false })}
         />
+
+        <DetailsModal
+          display={this.state.detailsDisplay}
+          closeDisplay={() => this.setState({ detailsDisplay: false })}
+          productDetails = {this.state.productDetails}
+        />
+
         <ScrollView>
           <TempratureBar />
           <RecommendedCrops />
           <CreateOrder
-            orderBtn = {this._openNewOrderModal}
+            orderBtn={this._openNewOrderModal}
           />
-          <ActiveOrders />
+          <ActiveOrders 
+            orderDetailsBtn = {this._openDetailsModal}
+          />
         </ScrollView>
 
       </View>
@@ -53,8 +66,6 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-
     backgroundColor: '#DAE0E2'
   },
 });

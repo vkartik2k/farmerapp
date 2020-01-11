@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, Image, TouchableHighlight } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+
+import OrderCard from '../components/OrderCard'
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -8,39 +10,7 @@ const height = Dimensions.get('window').height;
 export default function ActiveOrders(props) {
   return (
     <View style={styles.container}>
-      <View style={styles.card}>
-        <View>
-          <Image source={require('../assets/carrot_farm.jpg')} style={{ height: 80, width: 110 }} />
-        </View>
-        <View style={{ paddingHorizontal: 10 }}>
-          <Text style={{ fontSize: 17, fontWeight: 'bold' }}>CARROT</Text>
-          <Text>200 Kg</Text>
-          <Text>₹40/Kg</Text>
-          <Text style={{color: '#0A79DF'}}>Check Details</Text>
-        </View>
-      </View>
-      <View style={styles.card}>
-        <View>
-          <Image source={require('../assets/carrot_farm.jpg')} style={{ height: 80, width: 110 }} />
-        </View>
-        <View style={{ paddingHorizontal: 10 }}>
-          <Text style={{ fontSize: 17, fontWeight: 'bold' }}>CARROT</Text>
-          <Text>200 Kg</Text>
-          <Text>₹40/Kg</Text>
-          <Text style={{color: '#0A79DF'}}>Check Details</Text>
-        </View>
-      </View>
-      <View style={styles.card}>
-        <View>
-          <Image source={require('../assets/carrot_farm.jpg')} style={{ height: 80, width: 110 }} />
-        </View>
-        <View style={{ paddingHorizontal: 10 }}>
-          <Text style={{ fontSize: 17, fontWeight: 'bold' }}>CARROT</Text>
-          <Text>200 Kg</Text>
-          <Text>₹40/Kg</Text>
-          <Text style={{color: '#0A79DF'}}>Check Details</Text>
-        </View>
-      </View>
+      <OrderCard name="Carrot" price="12" quantity="30 KG" orderDetailsBtn={props.orderDetailsBtn}/>
     </View>
   )
 }
@@ -48,7 +18,6 @@ export default function ActiveOrders(props) {
 const styles = StyleSheet.create({
   container: {
     width: width - 20,
-    marginHorizontal: 10,
   },
   card: {
     width: width - 20,
