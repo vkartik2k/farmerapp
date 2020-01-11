@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, TextInput, TouchableHighlight, Image, Modal, Dimensions, Button } from 'react-native'
+import { StyleSheet, Text, View, TextInput, TouchableWithoutFeedback, Image, Modal, Dimensions } from 'react-native'
 import { MaterialIcons, Feather, AntDesign } from '@expo/vector-icons'
 import * as Permissions from 'expo-permissions'
 import { Camera } from 'expo-camera'
@@ -59,7 +59,7 @@ export default class NewOrderModal extends React.Component {
       return <Text>No access to camera</Text>
     }
 
-    let current;
+    let current
 
     if (this.state.current == 1) {
       current = <Camera
@@ -75,7 +75,7 @@ export default class NewOrderModal extends React.Component {
             alignItems: 'center',
             padding: 20
           }}>
-          <TouchableHighlight>
+          <TouchableWithoutFeedback>
             <View style={{ backgroundColor: '#fff', borderRadius: 100, padding: 20 }}>
               <Feather
                 name="camera"
@@ -84,7 +84,7 @@ export default class NewOrderModal extends React.Component {
                 onPress={this.takePicture}
               />
             </View>
-          </TouchableHighlight>
+          </TouchableWithoutFeedback>
         </View>
       </Camera>
     }
@@ -114,11 +114,11 @@ export default class NewOrderModal extends React.Component {
           value="120 Kg"
           multiline={true}
         />
-        <TouchableHighlight onPress={this.postAd} >
+        <TouchableWithoutFeedback onPress={this.postAd} >
           <View style={styles.btn}>
             <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#fff' }}>POST</Text>
           </View>
-        </TouchableHighlight>
+        </TouchableWithoutFeedback>
       </View>
     }
     if (this.state.current == 3) {
@@ -130,11 +130,11 @@ export default class NewOrderModal extends React.Component {
         />
         <Text style={{margin: 30, fontSize: 25}}>Congratulaions !</Text>
         <Text style={{paddingBottom: 150}}>Your ad will be live shortly.</Text>
-        <TouchableHighlight onPress={() => this.setState({current: 1})} >
+        <TouchableWithoutFeedback onPress={() => this.setState({current: 1})} >
           <View style={styles.btn}>
             <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#fff' }}>Post another ad</Text>
           </View>
-        </TouchableHighlight>
+        </TouchableWithoutFeedback>
       </View>
     }
 

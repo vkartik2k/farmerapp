@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableHighlight, Image, Modal, Dimensions, Button } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
+import React from 'react'
+import { StyleSheet, Text, View, TextInput, Modal, Dimensions, Button } from 'react-native'
+import { MaterialIcons } from '@expo/vector-icons'
 
 let height = Dimensions.get('window').height
 let width = Dimensions.get('window').width
@@ -14,9 +14,10 @@ export default class SignIn extends React.Component {
   }
 
   handleBackButtonClick() {
-    this.props.closeDisplay();
-    return true;
+    this.props.closeDisplay()
+    return true
   }
+
   render() {
     return (
       <Modal
@@ -37,7 +38,6 @@ export default class SignIn extends React.Component {
             </View>
             <View style={{ height: 32, width: 32 }}></View>
           </View>
-
           <View style={styles.card}>
             <TextInput style={styles.input} editable={false} value={"India"} />
             <View style={{ flexDirection: 'row' }}>
@@ -47,9 +47,7 @@ export default class SignIn extends React.Component {
             <View style={{margin: 25, alignItems: 'center'}}>
               <Text style={{color:'#99AAAB', fontSize:16}}>You will get an OTP carrier charges may apply</Text>
             </View>
-
             <Button title="Proceed" />
-
           </View>
         </View>
       </Modal>

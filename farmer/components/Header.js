@@ -1,9 +1,9 @@
-import React from 'react';
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
-import { Ionicons, MaterialCommunityIcons, SimpleLineIcons } from '@expo/vector-icons';
+import React from 'react'
+import { StyleSheet, Text, View, Dimensions } from 'react-native'
+import { Ionicons, MaterialCommunityIcons, SimpleLineIcons } from '@expo/vector-icons'
 
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width
+const height = Dimensions.get('window').height
 
 export default function Header(props) {
   return (
@@ -44,4 +44,4 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 10
   },
-});
+})

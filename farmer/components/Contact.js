@@ -1,9 +1,8 @@
-import React from 'react';
-import { StyleSheet, Image, Text, View, Dimensions, TouchableWithoutFeedback } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import React from 'react'
+import { StyleSheet, Image, Text, View, Dimensions, TouchableWithoutFeedback } from 'react-native'
 
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width
+const height = Dimensions.get('window').height
 
 export default class Contact extends React.Component {
   render() {
@@ -59,5 +58,4 @@ const styles = StyleSheet.create({
     color: '#7B8788',
     fontSize: 12,
   }
-
-});
+})

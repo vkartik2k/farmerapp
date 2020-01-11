@@ -1,8 +1,8 @@
-import React from 'react';
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity, Image } from 'react-native';
+import React from 'react'
+import { StyleSheet, Text, View, Dimensions, Image } from 'react-native'
 
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width
+const height = Dimensions.get('window').height
 
 export default function RecommendedCrops(props) {
   return (
@@ -52,4 +52,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1
   }
-});
+})

@@ -1,12 +1,12 @@
-import React from 'react';
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity, Image, TouchableHighlight } from 'react-native';
+import React from 'react'
+import { StyleSheet, Text, View, Dimensions, Image, TouchableWithoutFeedback } from 'react-native'
 
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width
+const height = Dimensions.get('window').height
 
 export default function OrderCard(props) {
   return (
-    <TouchableHighlight
+    <TouchableWithoutFeedback
       onPress={() => props.orderDetailsBtn({
         name: props.name,
         price: props.price,
@@ -23,7 +23,7 @@ export default function OrderCard(props) {
           <Text style={{fontSize: 16}}>{"Price : " +props.price}</Text>
         </View>
       </View>
-    </TouchableHighlight>
+    </TouchableWithoutFeedback>
   )
 }
 
@@ -46,4 +46,4 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     margin: 10
   }
-});
+})

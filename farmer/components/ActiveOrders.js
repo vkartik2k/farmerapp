@@ -1,11 +1,10 @@
-import React from 'react';
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity, Image, TouchableHighlight } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+import React from 'react'
+import { StyleSheet, View, Dimensions} from 'react-native'
 
 import OrderCard from '../components/OrderCard'
 
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width
+const height = Dimensions.get('window').height
 
 export default function ActiveOrders(props) {
   return (
@@ -32,4 +31,4 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     flexDirection: "row"
   }
-});
+})

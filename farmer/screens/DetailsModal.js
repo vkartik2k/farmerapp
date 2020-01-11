@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableHighlight, Image, Modal, Dimensions, Button } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
+import React from 'react'
+import { StyleSheet, Text, View, Modal, Dimensions } from 'react-native'
+import { MaterialIcons } from '@expo/vector-icons'
 
 import OrderCard from '../components/OrderCard'
 import Contact from '../components/Contact'
@@ -17,9 +17,10 @@ export default class DetailsModal extends React.Component {
   }
 
   handleBackButtonClick() {
-    this.props.closeDisplay();
-    return true;
+    this.props.closeDisplay()
+    return true
   }
+  
   render() {
     return (
       <Modal
@@ -40,7 +41,12 @@ export default class DetailsModal extends React.Component {
             </View>
             <View style={{ height: 32, width: 32 }}></View>
           </View>
-          <OrderCard name={this.props.productDetails.name} price={this.props.productDetails.price} quantity={this.props.productDetails.quantity} orderDetailsBtn={() => {}}/>
+          <OrderCard 
+            name={this.props.productDetails.name}
+            price={this.props.productDetails.price}
+            quantity={this.props.productDetails.quantity}
+            orderDetailsBtn={() => {}}
+          />
           <Text style={{ fontWeight: 'bold', paddingHorizontal: 10, paddingTop: 8, fontSize: 14 }}>RECENT CHATS</Text>
           <View style={styles.card}>
             <Contact name="Ram lal Meena" lastMsg="deal done" chatTime="12:30"/>

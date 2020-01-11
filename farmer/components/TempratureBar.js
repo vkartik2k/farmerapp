@@ -1,9 +1,9 @@
-import React from 'react';
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+import React from 'react'
+import { StyleSheet, Text, View, Dimensions } from 'react-native'
+import { Feather } from '@expo/vector-icons'
 
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width
+const height = Dimensions.get('window').height
 
 export default function TempratureBar(props) {
   return (
@@ -25,7 +25,6 @@ export default function TempratureBar(props) {
             </View>
             <Text style={{ color: 'white', fontSize: 48, fontWeight: '100' }}>22°C</Text>
           </View>
-
           <Text style={{ color: 'white' }}>NOW</Text>
         </View>
         <View style={{ padding: 10, alignItems: 'center' }}>
@@ -64,4 +63,4 @@ const styles = StyleSheet.create({
     alignItems: 'baseline',
     justifyContent: 'center'
   }
-});
+})

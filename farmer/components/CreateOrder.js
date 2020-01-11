@@ -1,9 +1,9 @@
-import React from 'react';
-import { StyleSheet, Text, View, Dimensions, TouchableWithoutFeedback } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import React from 'react'
+import { StyleSheet, Text, View, Dimensions, TouchableWithoutFeedback } from 'react-native'
+import { Ionicons } from '@expo/vector-icons'
 
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width
+const height = Dimensions.get('window').height
 
 export default function CreateOrder(props) {
   return (
@@ -20,7 +20,6 @@ export default function CreateOrder(props) {
           onPress={() => { props.orderBtn() }}
         >
           <Text style={{ paddingHorizontal: 15, fontSize: 18 }}>Create new order</Text>
-
         </TouchableWithoutFeedback>
       </View>
     </View>
@@ -44,5 +43,4 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-
-});
+})
