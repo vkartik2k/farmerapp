@@ -1,17 +1,48 @@
 import React from 'react'
-import { StyleSheet, View, Dimensions} from 'react-native'
+import { StyleSheet, View, Dimensions } from 'react-native'
 
 import OrderCard from '../components/OrderCard'
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 
-export default function ActiveOrders(props) {
-  return (
-    <View style={styles.container}>
-      <OrderCard name="Carrot" price="12" quantity="30 KG" orderDetailsBtn={props.orderDetailsBtn}/>
-    </View>
-  )
+export default class ActiveOrders extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      orders: []
+    }
+  }
+
+  componentDidMount() {
+    fetch('http://192.168.43.161:3000/farmer/weather', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        farmerId : '9999999999'
+      }),
+    }).then((response) => {
+      response = response.json()
+      response.then(response => {
+        this.setState({ orders: response.arr })
+      })
+    }).catch((err) => console.error(err))
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        {
+          this.state.orders.forEach(obj =>
+            <OrderCard name={obj.name} price={obj.price} quantity={obj.quantity + " KG"} orderDetailsBtn={this.props.orderDetailsBtn} />
+          )
+        }
+      </View>
+    )
+  }
 }
 
 const styles = StyleSheet.create({

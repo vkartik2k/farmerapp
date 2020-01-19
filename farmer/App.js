@@ -1,5 +1,7 @@
 import React from 'react'
 import { StyleSheet, View, ScrollView } from 'react-native'
+import { AsyncStorage } from 'react-native'
+import io from 'socket.io-client'
 
 import Header from './components/Header'
 import TempratureBar from './components/TempratureBar'
