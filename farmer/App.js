@@ -17,11 +17,41 @@ export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      user: null,
       NewOrderDisplay: false,
       signInDisplay: false,
       detailsDisplay: false,
       productDetails: {}
     }
+  }
+
+  _storeData = async (phone) => {
+    try {
+      await AsyncStorage.setItem('User', phone);
+    } catch (error) {
+      console.error(error)
+    }
+    this.setState({ User: phone });
+  };
+
+  _getMobileNo = async () => {
+    try {
+      const value = await AsyncStorage.getItem('User');
+      if (value !== '' && value != null) {
+        this.setState({ User: value });
+        // this.socket.emit('connected', {
+        //   phone: this.state.User
+        // })
+        // console.log("Emitted Connect With Device Number :" + this.state.User)
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  componentDidMount() {
+    // AsyncStorage.setItem('User', '');
+    this._getMobileNo()
   }
 
   _openNewOrderModal = () => this.setState({ NewOrderDisplay: true })
@@ -31,12 +61,13 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header loginBtn={this._openSignInModal}/>
+        <Header loginBtn={this._openSignInModal} />
         <NewOrderModal
           display={this.state.NewOrderDisplay}
           closeDisplay={() => this.setState({ NewOrderDisplay: false })}
         />
         <SignIn
+          _storeData={this._storeData}
           display={this.state.signInDisplay}
           closeDisplay={() => this.setState({ signInDisplay: false })}
         />
@@ -45,12 +76,16 @@ export default class App extends React.Component {
           closeDisplay={() => this.setState({ detailsDisplay: false })}
           productDetails={this.state.productDetails}
         />
-        <ScrollView>
-          <TempratureBar />
-          <RecommendedCrops />
-          <CreateOrder orderBtn={this._openNewOrderModal}/>
-          <ActiveOrders orderDetailsBtn={this._openDetailsModal}/>
-        </ScrollView>
+        {
+          this.state.User !== null
+            ? <ScrollView>
+              <TempratureBar />
+              <RecommendedCrops />
+              <CreateOrder orderBtn={this._openNewOrderModal} />
+              <ActiveOrders orderDetailsBtn={this._openDetailsModal} />
+            </ScrollView>
+            : this._openSignInModal()
+        }
       </View>
     )
   }

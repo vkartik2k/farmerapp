@@ -15,7 +15,7 @@ export default class ActiveOrders extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://192.168.43.161:3000/farmer/weather', {
+    fetch('http://192.168.43.161:3000/farmer/getAllProducts', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

@@ -10,12 +10,39 @@ export default class SignIn extends React.Component {
     super(props)
     this.state = {
       isLoading: false,
+      User: null
     }
   }
 
   handleBackButtonClick() {
     this.props.closeDisplay()
     return true
+  }
+
+  _onBtnClick = () => {
+    if (this.state.User.length != 10) {
+      Alert.alert('Invalid number', 'The number entered is invalid.')
+    }
+    else {
+      fetch('http://192.168.43.161:3000/farmer/register', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          farmerId: this.state.User.toString()
+        }),
+      }).then((response) => {
+        response = response.json()
+        response.then(response => {
+          console.log(response)
+          if (response.status === 201) {
+            this.props._storeData(this.state.User)
+          }
+        })
+      }).catch((err) => console.error(err));
+    }
   }
 
   render() {
@@ -47,7 +74,7 @@ export default class SignIn extends React.Component {
             <View style={{margin: 25, alignItems: 'center'}}>
               <Text style={{color:'#99AAAB', fontSize:16}}>You will get an OTP carrier charges may apply</Text>
             </View>
-            <Button title="Proceed" />
+            <Button title="Proceed" onPress ={ () => this._onBtnClick()}/>
           </View>
         </View>
       </Modal>
