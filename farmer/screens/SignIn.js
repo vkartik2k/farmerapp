@@ -24,20 +24,19 @@ export default class SignIn extends React.Component {
       Alert.alert('Invalid number', 'The number entered is invalid.')
     }
     else {
-      fetch('http://192.168.43.161:3000/farmer/register', {
+      fetch('http://52.66.72.209/api/register', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          farmerId: this.state.User.toString()
+          phone: this.state.User.toString()
         }),
       }).then((response) => {
         response = response.json()
         response.then(response => {
-          console.log(response)
-          if (response.status === 201) {
+          if (response.status === 201 || response.status === 202) {
             this.props._storeData(this.state.User)
           }
         })

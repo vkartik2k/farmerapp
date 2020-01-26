@@ -15,15 +15,12 @@ export default class ActiveOrders extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://192.168.43.161:3000/farmer/getAllProducts', {
-      method: 'POST',
+    fetch('http://52.66.72.209/api/get-all-products/id=9999999999', {
+      method: 'GET',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        farmerId : '9999999999'
-      }),
     }).then((response) => {
       response = response.json()
       response.then(response => {

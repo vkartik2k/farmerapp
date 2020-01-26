@@ -11,7 +11,17 @@ export default class TempratureBar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      temp : null,
+      temp : {
+        data : {
+          data : {
+            temp : 22,
+            temp_min : 20,
+            temp_max : 25,
+            humidity: 33,
+            pressure: 1024
+          }
+        }
+      },
       region: null,
     }
     this._getLocationAsync()
@@ -30,16 +40,12 @@ export default class TempratureBar extends React.Component {
       longitudeDelta: 0.015,
     }
     this.setState({ region: region })
-    fetch('http://192.168.43.161:3000/farmer/weather', {
-      method: 'POST',
+    fetch('http://52.66.72.209/api/weather/?lat='+this.state.region.latitude+'&lon='+this.state.region.longitude, {
+      method: 'GET',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
-      }),
     }).then((response) => {
       response = response.json()
       response.then(response => {
@@ -53,7 +59,7 @@ export default class TempratureBar extends React.Component {
       <View style={styles.container}>
         <View style={styles.temp}>
           <View style={{ padding: 10, alignItems: 'center' }}>
-            <Text style={{ color: 'white', fontSize: 38, fontWeight: '100' }}>{this.state.temp.minTemp+'°C'}</Text>
+            <Text style={{ color: 'white', fontSize: 38, fontWeight: '100' }}>{this.state.temp.data.data.temp_min+'°C'}</Text>
             <Text style={{ color: 'white' }}>LOW</Text>
           </View>
           <View style={{ padding: 10, alignItems: 'center' }}>
@@ -66,21 +72,21 @@ export default class TempratureBar extends React.Component {
                   onPress={() => { this.props.loginBtn() }}
                 />
               </View>
-              <Text style={{ color: 'white', fontSize: 48, fontWeight: '100' }}>{this.state.temp.currentTemp+'°C'}</Text>
+              <Text style={{ color: 'white', fontSize: 48, fontWeight: '100' }}>{this.state.temp.data.data.temp+'°C'}</Text>
             </View>
             <Text style={{ color: 'white' }}>NOW</Text>
           </View>
           <View style={{ padding: 10, alignItems: 'center' }}>
-            <Text style={{ color: 'white', fontSize: 38, fontWeight: '100' }}>{this.state.temp.maxTemp+'°C'}</Text>
+            <Text style={{ color: 'white', fontSize: 38, fontWeight: '100' }}>{this.state.temp.data.data.temp_max+'°C'}</Text>
             <Text style={{ color: 'white' }}>HIGH</Text>
           </View>
         </View>
         <View style={styles.extra}>
           <View>
-            <Text style={{ color: 'white', paddingHorizontal: 10, paddingVertical: 5, fontWeight: 'bold' }}>{"Humidity:"+(this.state.temp.humidity * 100)+"%"}</Text>
+            <Text style={{ color: 'white', paddingHorizontal: 10, paddingVertical: 5, fontWeight: 'bold' }}>{"Humidity:"+(this.state.temp.data.data.humidity)+"%"}</Text>
           </View>
           <View style={{ borderLeftColor: 'white', borderLeftWidth: 0.5 }}>
-            <Text style={{ color: 'white', paddingHorizontal: 10, paddingVertical: 5, fontWeight: 'bold' }}>{"Wind Speed:"+ this.state.temp.windSpeed+"Kmph"}</Text>
+            <Text style={{ color: 'white', paddingHorizontal: 10, paddingVertical: 5, fontWeight: 'bold' }}>{"Pressure:"+ this.state.temp.data.data.pressure+"Ps"}</Text>
           </View>
         </View>
       </View>
