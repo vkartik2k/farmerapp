@@ -49,9 +49,9 @@ export default class DetailsModal extends React.Component {
           />
           <Text style={{ fontWeight: 'bold', paddingHorizontal: 10, paddingTop: 8, fontSize: 14 }}>RECENT CHATS</Text>
           <View style={styles.card}>
-            <Contact name="Ram lal Meena" lastMsg="deal done" chatTime="12:30"/>
-            <Contact name="Ram lal Meena" lastMsg="deal done" chatTime="12:30"/>
-            <Contact name="Ram lal Meena" lastMsg="deal done" chatTime="12:30"/>
+            <Contact name="Big Yellow Door" lastMsg="Deal done" chatTime="1:30"/>
+            <Contact name="Ram Singh" lastMsg="Great" chatTime="11:20"/>
+            <Contact name="Rajesh Yadav" lastMsg="Okay" chatTime="07:49"/>
           </View>
         </View>
       </Modal>

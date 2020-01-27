@@ -1,8 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View, Dimensions } from 'react-native'
 import { Feather } from '@expo/vector-icons'
-import * as Location from 'expo-location'
-import * as Permissions from 'expo-permissions'
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -14,44 +12,16 @@ export default class TempratureBar extends React.Component {
       temp : {
         data : {
           data : {
-            temp : 22,
-            temp_min : 20,
-            temp_max : 25,
-            humidity: 33,
-            pressure: 1024
+            temp : 18,
+            temp_min : 9,
+            temp_max : 20,
+            humidity: 56,
+            pressure: 1014
           }
         }
       },
       region: null,
     }
-    this._getLocationAsync()
-  }
-
-  _getLocationAsync = async () => {
-    let { status } = await Permissions.askAsync(Permissions.LOCATION)
-    if (status !== 'granted') {
-      console.log("Permission to location denied!")
-    }
-    let location = await Location.getCurrentPositionAsync({ enableHighAccuracy: true })
-    let region = {
-      latitude: location.coords.latitude,
-      longitude: location.coords.longitude,
-      latitudeDelta: 0.015,
-      longitudeDelta: 0.015,
-    }
-    this.setState({ region: region })
-    fetch('http://52.66.72.209/api/weather/?lat='+this.state.region.latitude+'&lon='+this.state.region.longitude, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    }).then((response) => {
-      response = response.json()
-      response.then(response => {
-        this.setState({temp : response})
-      })
-    }).catch((err) => console.error(err))
   }
 
   render() {
@@ -83,10 +53,10 @@ export default class TempratureBar extends React.Component {
         </View>
         <View style={styles.extra}>
           <View>
-            <Text style={{ color: 'white', paddingHorizontal: 10, paddingVertical: 5, fontWeight: 'bold' }}>{"Humidity:"+(this.state.temp.data.data.humidity)+"%"}</Text>
+            <Text style={{ color: 'white', paddingHorizontal: 10, paddingVertical: 5, fontWeight: 'bold' }}>{"Humidity: "+(this.state.temp.data.data.humidity)+"%"}</Text>
           </View>
           <View style={{ borderLeftColor: 'white', borderLeftWidth: 0.5 }}>
-            <Text style={{ color: 'white', paddingHorizontal: 10, paddingVertical: 5, fontWeight: 'bold' }}>{"Pressure:"+ this.state.temp.data.data.pressure+"Ps"}</Text>
+            <Text style={{ color: 'white', paddingHorizontal: 10, paddingVertical: 5, fontWeight: 'bold' }}>{"Pressure: "+ this.state.temp.data.data.pressure+" mb"}</Text>
           </View>
         </View>
       </View>

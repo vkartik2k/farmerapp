@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View, TextInput, TouchableWithoutFeedback, Image, Modal, Dimensions } from 'react-native'
 import { MaterialIcons, Feather, AntDesign } from '@expo/vector-icons'
 import * as Permissions from 'expo-permissions'
+import { AsyncStorage } from 'react-native'
 import { Camera } from 'expo-camera'
 
 let height = Dimensions.get('window').height
@@ -15,8 +16,36 @@ export default class NewOrderModal extends React.Component {
       scanned: false,
       current: 1,
       photo: null,
+      id: "",
+      name: "Apple",
+      description: "Apple is a fleshy fruit with a range of health benefits. It's a product of fruit-bearing deciduous small tree, growing up to 5-8 meters high.",
+      price: "₹ 60 per Kg",
+      quantity: "100 Kg",
+      orders: []
     }
   }
+
+  // _allProducts = async () => {
+  //   try {
+  //     let value = await AsyncStorage.getItem('Product');
+  //     value = JSON.parse(value);
+  //     console.log(value)
+  //     this.setState({ orders: value.arr });
+  //   } catch (error) {
+  //     console.error(error)
+  //   }
+  // }
+
+  // _addProduct = async (object) => {
+  //   try {
+  //     await AsyncStorage.setItem('Product', JSON.stringify(object));
+  //   } catch (error) {
+  //     console.error(error)
+  //   }
+  //   console.log(object.arr[0])
+  //   this.setState({ orders: object.arr });
+  //   console.log(this.state.User)
+  // };
 
   async componentDidMount() {
     this.getPermissionsAsync()
@@ -41,11 +70,64 @@ export default class NewOrderModal extends React.Component {
   postAd = () => {
     console.log("Ad Posted")
     this.setState({ current: 3 })
+    // this._addProduct({
+    //   arr : this.state.orders + [{
+    //     title : this.state.name,
+    //     price : this.state.price,
+    //     quantity : this.state.quantity,
+    //     img : this.state.photo
+    //   }]
+    // })
+
+  //   fetch('http://52.66.72.209/api/update', {
+  //     method: 'POST',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       itemId: this.state.id.toString(),
+  //       name: this.state.name.toString(),
+  //       price: this.state.price.toString(),
+  //       description: this.state.description.toString(),
+  //       quantity: this.state.quantity.toString(),
+  //     }),
+  //   }).then((response) => {
+  //     response = response.json()
+  //     response.then(response => {
+  //       if (response.status === 200) {
+  //         console.log(response)
+  //         this.setState({ current: 3 })
+  //       }
+  //     })
+  //   }).catch((err) => console.error(err));
   }
 
   onPictureSaved = photo => {
     console.log(photo)
     this.setState({ photo: { uri: photo.uri }, current: 2 })
+    // let formdata = new FormData();
+    // formdata.append("product[images_attributes[0][file]]", { uri: photo.uri, name: 'image.jpg', type: 'image/jpeg' })
+    // fetch('http://52.66.72.209/api/upload-item', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'multipart/form-data',
+    //   },
+    //   body: formdata
+    // }).then(response => {
+    //   this.setState({
+    //     id : response.itemId,
+    //     name: response.name,
+    //     price: response.price,
+    //     description: response.description,
+    //     quantity: response.quantity
+    //   })
+    //   console.log(response)
+    //   console.log("image uploaded")
+    // this.setState({ photo: { uri: photo.uri }, current: 2 })
+    // }).catch(err => {
+    //   console.log(err)
+    // })
   }
 
 
@@ -94,24 +176,28 @@ export default class NewOrderModal extends React.Component {
         <Text style={styles.ques}>NAME</Text>
         <TextInput
           style={styles.input}
-          value="Carrot"
+          value={this.state.name}
+          onChangeText={(text) => this.setState({ name: text })}
         />
         <Text style={styles.ques}>DESCRIPTION</Text>
         <TextInput
           style={styles.des}
-          value="My random description"
+          value={this.state.description}
+          onChangeText={(text) => this.setState({ description: text })}
           multiline={true}
         />
         <Text style={styles.ques}>PRICE</Text>
         <TextInput
           style={styles.input}
-          value="12"
+          value={this.state.price}
+          onChangeText={(text) => this.setState({ price: text })}
           multiline={true}
         />
         <Text style={styles.ques}>QUANTITY</Text>
         <TextInput
           style={styles.input}
-          value="120 Kg"
+          value={this.state.quantity}
+          onChangeText={(text) => this.setState({ quantity: text })}
           multiline={true}
         />
         <TouchableWithoutFeedback onPress={this.postAd} >
@@ -128,9 +214,9 @@ export default class NewOrderModal extends React.Component {
           color="#0A79DF"
           size={200}
         />
-        <Text style={{margin: 30, fontSize: 25}}>Congratulaions !</Text>
-        <Text style={{paddingBottom: 150}}>Your ad will be live shortly.</Text>
-        <TouchableWithoutFeedback onPress={() => this.setState({current: 1})} >
+        <Text style={{ margin: 30, fontSize: 25 }}>Congratulaions !</Text>
+        <Text style={{ paddingBottom: 150 }}>Your ad will be live once after verification is done.</Text>
+        <TouchableWithoutFeedback onPress={() => this.setState({ current: 1 })} >
           <View style={styles.btn}>
             <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#fff' }}>Post another ad</Text>
           </View>

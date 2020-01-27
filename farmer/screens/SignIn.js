@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, TextInput, Modal, Dimensions, Button } from 'react-native'
+import { StyleSheet, Text, View, TextInput, Modal, Dimensions, Button, Alert } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
 
 let height = Dimensions.get('window').height
@@ -10,8 +10,9 @@ export default class SignIn extends React.Component {
     super(props)
     this.state = {
       isLoading: false,
-      User: null
+      User: ""
     }
+    
   }
 
   handleBackButtonClick() {
@@ -20,28 +21,33 @@ export default class SignIn extends React.Component {
   }
 
   _onBtnClick = () => {
-    if (this.state.User.length != 10) {
-      Alert.alert('Invalid number', 'The number entered is invalid.')
-    }
-    else {
-      fetch('http://52.66.72.209/api/register', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          phone: this.state.User.toString()
-        }),
-      }).then((response) => {
-        response = response.json()
-        response.then(response => {
-          if (response.status === 201 || response.status === 202) {
-            this.props._storeData(this.state.User)
-          }
-        })
-      }).catch((err) => console.error(err));
-    }
+    this.props.closeDisplay()
+    // if (this.state.User.length != 10) {
+    //   Alert.alert('Invalid number', 'The number entered is invalid.')
+    // }
+    // else {
+    //   this.props._storeData(this.state.User)
+    //   console.log("Stored")
+    //   fetch('http://52.66.72.209/api/register', {
+    //     method: 'POST',
+    //     headers: {
+    //       Accept: 'application/json',
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //       phone: this.state.User.toString()
+    //     }),
+    //   }).then((response) => {
+    //     console.log(response)
+    //     response = response.json()
+    //     response.then(response => {
+    //       if (response.status === 201 || response.status === 202) {
+
+    //         this.props._storeData(this.state.User)
+    //       }
+    //     })
+    //   }).catch((err) => console.error(err));
+    // }
   }
 
   render() {
@@ -68,7 +74,13 @@ export default class SignIn extends React.Component {
             <TextInput style={styles.input} editable={false} value={"India"} />
             <View style={{ flexDirection: 'row' }}>
               <TextInput style={styles.input} editable={false} value={"+91"} />
-              <TextInput style={{...styles.input, flex: 1}} placeholder={"Mobile Number"} maxLength={10} keyboardType="phone-pad"/>
+              <TextInput 
+                style={{...styles.input, flex: 1}} 
+                placeholder={"Mobile Number"} 
+                maxLength={10} 
+                keyboardType="phone-pad"
+                onChangeText={(text) => this.setState({User :text})}
+              />
             </View>
             <View style={{margin: 25, alignItems: 'center'}}>
               <Text style={{color:'#99AAAB', fontSize:16}}>You will get an OTP carrier charges may apply</Text>

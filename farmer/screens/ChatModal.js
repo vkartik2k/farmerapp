@@ -103,26 +103,16 @@ export default class ChatModal extends React.Component {
             <View style={styles.chatBox}>
               <ScrollView>
                 <SendMsg msg="Hello" />
-                <RecMsg msg="Deal done bla bla bla sa dsgsgsd" />
-                <RecMsg msg="LOREM IPSUM DSG FDHDHG DGDGFDHFGDFDGSFDHGFHFGDF FDGHGDFDGDG " />
-                <RecMsg msg="dsf bla bldsfsgd" />
-                <SendMsg msg="Hello" />
-                <SendMsg msg="Hello" />
-                <RecMsg msg="Deal done bla bla bla sa dsgsgsd" />
-                <RecMsg msg="LOREM IPSUM DSG FDHDHG DGDGFDHFGDFDGSFDHGFHFGDF FDGHGDFDGDG " />
-                <RecMsg msg="dsf bla bldsfsgd" />
-                <SendMsg msg="Hello" />
-                <SendMsg msg="Hello" />
-                <RecMsg msg="Deal done bla bla bla sa dsgsgsd" />
-                <RecMsg msg="LOREM IPSUM DSG FDHDHG DGDGFDHFGDFDGSFDHGFHFGDF FDGHGDFDGDG " />
-                <RecMsg msg="dsf bla bldsfsgd" />
-                <SendMsg msg="Hello" />
+                <SendMsg msg="I want to buy 100 Kg carrot for my restaurant." />
+                <RecMsg msg="Okay Sir" />
+                <RecMsg msg="Your products will be delivered by tomm. morning" />
+                <SendMsg msg="Deal done" />
               </ScrollView>
             </View>
             <View style={styles.informationCard}>
               <View>
-                <Text style={{ fontSize: 16 }}>Name : Ram Peela Meena</Text>
-                <Text style={{ fontSize: 16 }}>Mobile No. : 9999999999</Text>
+                <Text style={{ fontSize: 16 }}>Name : Big Yellow Door</Text>
+                <Text style={{ fontSize: 16 }}>Mobile No. : 9811678888</Text>
                 <Text style={{ fontSize: 16 }}>Location : North Delhi</Text>
               </View>
               <View style={{
@@ -139,7 +129,7 @@ export default class ChatModal extends React.Component {
                   name="phone"
                   color="#fff"
                   size={35}
-                  onPress={() => Linking.openURL('tel:+123456789')}
+                  onPress={() => Linking.openURL('tel:+919811678888')}
                 />
               </View>
             </View>
